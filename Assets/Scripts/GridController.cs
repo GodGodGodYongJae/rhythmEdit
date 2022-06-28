@@ -13,6 +13,8 @@ public class GridController : MonoBehaviour
     {
         Scroll();
         ChangeSnapAmount();
+
+
     }
 
     void Scroll()
@@ -20,6 +22,7 @@ public class GridController : MonoBehaviour
         if(sheetController.isScrolling && !sheetController.isLeftCtrl)
             gridGenerator.ChangePos(sheetController.scrollDir);
     }
+
 
     void ChangeSnapAmount()
     {

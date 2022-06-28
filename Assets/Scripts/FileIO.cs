@@ -15,7 +15,7 @@ public class FileIO : MonoBehaviour
     public Music music;
     public InputField musicName;
     string basePath;
-
+    string filePath = Path.Combine(Application.streamingAssetsPath, "Example.txt");
     private void Start()
     {
         basePath = Application.dataPath + "/Resources/" + sheet.fileName;
@@ -39,8 +39,10 @@ public class FileIO : MonoBehaviour
         {
             directoryInfo.Create();
         }
+        string filePath = Path.Combine(Application.streamingAssetsPath, sheet.fileName + "_data.txt");
 
-        using (StreamWriter streamWriter = new StreamWriter(new FileStream(basePath + "/" + sheet.fileName + "_data.txt", FileMode.Create, FileAccess.Write), System.Text.Encoding.Unicode))
+
+        using (StreamWriter streamWriter = new StreamWriter(new FileStream(filePath, FileMode.Create, FileAccess.Write), System.Text.Encoding.Unicode))
         {
             streamWriter.Write(SheetWriter.WriteSheetInfo());
             streamWriter.Write(SheetWriter.WriteContentInfo());
@@ -53,7 +55,8 @@ public class FileIO : MonoBehaviour
         string data = "";
         sheet.Init();
 
-        using (StreamReader streamReader = new StreamReader(basePath + "/" + sheet.fileName + "_data.txt"))
+        string filePath = Path.Combine(Application.streamingAssetsPath, sheet.fileName + "_data.txt");
+        using (StreamReader streamReader = new StreamReader(filePath))
         {
             while ((data = streamReader.ReadLine()) != null)
             {
@@ -66,5 +69,23 @@ public class FileIO : MonoBehaviour
             noteGenerator.GenNote();
         }
         sheetParser.isfirstRead = false;
+
+
+        //TextAsset asset = Resources.Load(sheet.fileName + "/" +sheet.fileName+"_data") as TextAsset;
+        //string str = asset.text;
+        //TextReader txtreader = new StringReader(str);
+        //StringReader streader = new StringReader(str);
+
+        //while ((data = streader.ReadLine()) != null)
+        //{
+        //    sheetParser.Parse(data);
+        //}
+
+        //music.Init();
+        //sheetEditor.Init();
+        //gridGenerator.Init();
+        //noteGenerator.GenNote();
+
+        //sheetParser.isfirstRead = false;
     }
 }

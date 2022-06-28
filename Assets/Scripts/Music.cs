@@ -9,7 +9,7 @@ public class Music : MonoBehaviour
     public Sheet sheet;
     public AudioSource audioSource;
     AudioClip audioClip;
-
+    public GridGenerator GG;
     public int Min { get; private set; }
     public int Sec { get; private set; }
 
@@ -83,7 +83,9 @@ public class Music : MonoBehaviour
             audioSource.timeSamples = 0;
             audioSource.Stop();
         }
-
+      
+        GG.InitPos();
+        GG.ChangeSnap();
         sheetEditor.isPlay = false;
     }
 

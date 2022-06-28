@@ -37,7 +37,7 @@ public class GridGenerator : MonoBehaviour
     // 그리드 생성
     void Create()
     {
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 100; i++)
         {
             GameObject obj = Instantiate(grid_Beatbar, new Vector3(0f, i * 6f * scrollSpeed, 0f), Quaternion.identity);
             Grid grid = obj.GetComponent<Grid>();
@@ -63,7 +63,7 @@ public class GridGenerator : MonoBehaviour
     }
 
     // 그리드 좌표 초기화
-    void InitPos()
+   public void InitPos()
     {
         for(int i = 0; i < grids.Count; i++)
         {
